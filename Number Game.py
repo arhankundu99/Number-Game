@@ -14,9 +14,9 @@ timeleft = 30
 # function that will start the game.This function is called every time the enter key is pressed
 def startGame(event):
     if timeleft == 30:
-        # start the countdown timer.
+        # starting the countdown timer.
         countdown()
-    # run the function to choose the next colour.
+    # running this function to get next expression
     getNextExpression()
 
 
@@ -25,12 +25,9 @@ def getNextExpression():
 
     global score
     if timeleft > 0:
-
-        # make the text entry box active.
         userInputBox.focus_set()
 
-        # if the colour typed is equal
-        # to the colour of the text
+        # if the colour typed is equal to the colour of the text
         string = ''
         if signs[0] == '+':
             string = str(numbers[0]+numbers[1])
@@ -44,44 +41,43 @@ def getNextExpression():
         if userInputBox.get().lower() == string:
             score += 1
 
-        # clear the text entry box.
+        # clearing the text entry box.
         userInputBox.delete(0, tkinter.END)
 
         random.shuffle(colours)
         random.shuffle(numbers)
         random.shuffle(signs)
 
-        # change the colour to type, by changing the
-        # text _and_ the colour to a random colour value
+        # changing the colour to type, by changing the text and the colour to a random colour value
         label.config(fg=str(colours[1]), text=str(numbers[0])+signs[0]+str(numbers[1]))
 
-        # update the score.
+        # updating the score.
         scoreLabel.config(text="Score: " + str(score))
 
 
 def countdown():
     global timeleft
 
-    # if a game is in play
+    # if the game is in play
     if timeleft > 0:
-        # decrement the timer.
+        # decrementing the timer.
         timeleft -= 1
 
-        # update the time left label
+        # updating the time left label
         timeLabel.config(text="Time left: "
                               + str(timeleft))
 
-        # run the function again after 1 second.
+        # running the function again after 1 second.
         timeLabel.after(1000, countdown)
     # Driver Code
 
-# create a GUI Window
+# creating a GUI Window
 root = tkinter.Tk()
 
-# set the title
+# setting the title
 root.title("NUMBER GAME")
 
-# set the size
+# setting the size
 root.geometry("500x300")
 
 # adding an instructions label
